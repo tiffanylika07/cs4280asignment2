@@ -3,6 +3,7 @@
     Created on : Apr 7, 2017, 2:02:43 PM
     Author     : yuenyauli2
 --%>
+<%@page import="java.util.ArrayList"%>
 <!-- Google Fonts -->
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
@@ -33,6 +34,9 @@
     <!-- Main Menu -->
     <jsp:include page="menu.jsp"/>
         <h1>Hello World!</h1>
-        <a href=""> abcde</a>
+            <% ArrayList<String> category=(ArrayList<String>) request.getAttribute("allCategory");
+                for (String s: category) 
+                           out.println("<li>"+s+"</li>");
+            %>
     </body>
 </html>
