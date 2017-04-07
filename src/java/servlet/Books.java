@@ -39,11 +39,12 @@ public class Books extends HttpServlet {
      */
    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         response.setContentType("text/html;charset=UTF-8");
-        
-        ArrayList<String> allCategory = this.getAllCategory();
-        request.setAttribute("allCategory", allCategory);
+        String type=request.getParameter("type");
+        if (type.equals("catetory")){
+         ArrayList<String> allCategory = this.getAllCategory();
+         request.setAttribute("allCategory", allCategory);
+        }
     }
 
     private void doRetrieveEntry(HttpServletRequest request, HttpServletResponse response)
@@ -185,7 +186,6 @@ public class Books extends HttpServlet {
             while (rs.next()) {
                 System.out.println(rs.getString("Category_Name"));
                 listOfString.add(rs.getString("Category_Name"));
-                
             }
             
            
