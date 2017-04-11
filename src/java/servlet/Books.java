@@ -39,11 +39,12 @@ public class Books extends HttpServlet {
      */
    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         response.setContentType("text/html;charset=UTF-8");
-        
-        ArrayList<String> allCategory = this.getAllCategory();
-        request.setAttribute("allCategory", allCategory);
+        String type=request.getParameter("type");
+        if (type.equals("catetory")){
+         ArrayList<String> allCategory = this.getAllCategory();
+         request.setAttribute("allCategory", allCategory);
+        }
     }
 
     private void doRetrieveEntry(HttpServletRequest request, HttpServletResponse response)
@@ -176,16 +177,15 @@ public class Books extends HttpServlet {
 
         try {
             con = ConnectToDB.getConnection();
-            String sql = ("SELECT * FROM [BOOK] WHERE [Price] >=100");
+            String sql = ("SELECT * FROM [Category] ");
                 PreparedStatement pstmt = con.prepareStatement(sql);
                 //Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 //ResultSet rs = stmt.executeQuery("SELECT * FROM [book] ORDER BY [Book_Name] ASC");
                 ResultSet rs = pstmt.executeQuery();
             
             while (rs.next()) {
-                
+                System.out.println(rs.getString("Category_Name"));
                 listOfString.add(rs.getString("Category_Name"));
-                
             }
             
            

@@ -35,12 +35,6 @@
                 <ul class="nav navbar-nav">
                     <li class="<%=pageName.equals("index") ? "active" : "" %>"><a href="index.jsp">Home</a></li>
                     <li class="<%=(pageName.equals("shop") || pageName.equals("single")) ? "active" : "" %>"><a href="viewCategory.jsp">Category</a></li>
-<!--                    <li class="<%=pageName.equals("cart") ? "active" : "" %>"><a href="cart.jsp">Cart</a></li>
-                    <li class="<%=(pageName.equals("recycle") || pageName.equals("single-recycleToy")) ? "active" : "" %>"><a href="recycle.jsp">Recycle</a></li>
-                    <% if (isAdmin) { %>
-                    <li class="<%=(pageName.equals("manageToy") || pageName.equals("editToy")) ? "active" : "" %>"><a href="manageToy">Manage Toy</a></li>
-                    <li class="<%=(pageName.equals("manageRecycleToy") || pageName.equals("editRecycleToy"))? "active" : "" %>"><a href="manageRecycle">Manage Recycle</a></li>-->
-                    <% } %>
                 </ul>                       
             </div>                
         </div>
