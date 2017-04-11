@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import database.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -39,30 +40,19 @@ public class Login extends HttpServlet {
             out.println("<title>Book Store - Login</title>");
             out.println("</head>");
             out.println("<body>");
-            java.lang.String url = "jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad028_db;";
-            java.lang.Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection connection = DriverManager.getConnection(url, "aiad028", "aiad028");
-            Statement statement = connection.createStatement();
-            String query = "SELECT * FROM [USER] WHERE username='" + request.getParameter("username") + "' and password='" + request.getParameter("password") + "'";
-            ResultSet resultSet = statement.executeQuery(query);
-            if (!resultSet.next()) {
+            UserDB userDB = new UserDB();
+            if (!userDB.isValidUser(request.getParameter("username"), request.getParameter("password"))) {
                 out.println("<h1>Wrong username or password. Please try again.</h1>");
                 out.println("<a href=\"javascript:window.history.back();\">Back</a>");
             } else {
                 HttpSession session = request.getSession();
-                session.setAttribute("user", htmlEncode(resultSet.getString("username")));
-                out.println("<h1>You Login as " + htmlEncode(resultSet.getString("username")) + "</h1>");
+                session.setAttribute("user", htmlEncode(request.getParameter("username")));
+                out.println("<h1>You Login as " + htmlEncode(request.getParameter("username")) + "</h1>");
                 out.println("<h1>You will be back to menu in 3 seconds.</h1>");
                 out.println("<meta http-equiv=\"Refresh\" content=\"3;url=./index.jsp\">");
             }
             out.println("</body>");
             out.println("</html>");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            out.println("<div style='color: red'>" + ex.toString() + "</div>");
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            out.println("<div style='color: red'>" + ex.toString() + "</div>");
         } finally {
             out.close();
         }

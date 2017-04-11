@@ -20,7 +20,7 @@ public class UserDB {
 
         try {
             cnnct = ConnectionUtil.getConnection();
-            String preQueryStatement = "SELECT * FROM \"USER\" WHERE \"username\"=? AND \"password\"=?";
+            String preQueryStatement = "SELECT * FROM [USER] WHERE username=? AND password=?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, username);
             pStmnt.setString(2, password);
@@ -31,6 +31,7 @@ public class UserDB {
                 return false;
             }
         } catch (Exception ex) {
+            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
@@ -41,7 +42,7 @@ public class UserDB {
 
         try {
             cnnct = ConnectionUtil.getConnection();
-            String preQueryStatement = "SELECT * FROM \"USER\" WHERE \"username\"=?";
+            String preQueryStatement = "SELECT * FROM [USER] WHERE username=?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, username);
             ResultSet rs = pStmnt.executeQuery();
@@ -51,6 +52,7 @@ public class UserDB {
                 return false;
             }
         } catch (Exception ex) {
+            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
@@ -62,9 +64,9 @@ public class UserDB {
 
         try {
             connection = ConnectionUtil.getConnection();
-            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO [USER] (username,password) " + "VALUES (? " + ", ?)");
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
+            pStmnt = connection.prepareStatement("INSERT INTO [USER] (username,password) VALUES (? , ?)");
+            pStmnt.setString(1, username);
+            pStmnt.setString(2, password);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
                 isSuccess = true;

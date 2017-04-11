@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : Apr 7, 2017, 1:55:29 PM
+    Document   : createUser
+    Created on : Apr 7, 2017, 4:26:25 PM
     Author     : ktkeung2
 --%>
 
@@ -9,15 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Book Store - Login</title>
+        <title>Book Store - Create Account</title>
     </head>
     <body>
-        <h1>Book Store - Login</h1>
-        <form action="login.do" method="post">
+        <h1>Book Store - Create Account</h1>
+        <form action="Signup.do" method="post">
             <p>Username: </p><input name="username" type="text" />
             <p>password: </p><input name="password" type="password" />
             <input type="submit" value="Submit"/>
-<!--            <a href="./createUser.jsp">Create Account</a>-->
         </form>
     </body>
 </html>

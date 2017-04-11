@@ -17,18 +17,18 @@
         <servlet-class>servlet.index</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>createUser</servlet-name>
-        <servlet-class>servlet.CreateUser</servlet-class>
+        <servlet-name>Signup</servlet-name>
+        <servlet-class>servlet.Signup</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>User</servlet-name>
         <servlet-class>javabean.User</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>ConnectionUtil</servlet-name>
         <servlet-class>database.ConnectionUtil</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>UserDB</servlet-name>
         <servlet-class>database.UserDB</servlet-class>
     </servlet>
@@ -41,18 +41,18 @@
         <url-pattern>/index.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>createUser</servlet-name>
-        <url-pattern>/createUser.do</url-pattern>
+        <servlet-name>Signup</servlet-name>
+        <url-pattern>/Signup.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>User</servlet-name>
         <url-pattern>/User</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UserDB</servlet-name>
         <url-pattern>/UserDB</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ConnectionUtil</servlet-name>
         <url-pattern>/ConnectionUtil</url-pattern>
     </servlet-mapping>

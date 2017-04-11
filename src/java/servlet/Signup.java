@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import database.ConnectionUtil;
 import database.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,7 +28,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author ktkeung2
  */
-public class CreateUser extends HttpServlet {
+public class Signup extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,14 +42,16 @@ public class CreateUser extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             UserDB userDB = new UserDB();
-            if (userDB.isOccupiedUser(request.getParameter("username"))) {
+            String username=request.getParameter("username");
+            String password=request.getParameter("password");
+            if (userDB.isOccupiedUser(username)) {
                 out.println("<legend>ERROR: Username is already used. Please try again.</legend>");
                 out.println("<a href=\"javascript:window.history.back();\">Back</a>");
-            } else if (userDB.addRecord(request.getParameter("username"), request.getParameter("password"))) {
+            } else if (userDB.addRecord(username, password)) {
                 out.println("<legend>New User Account is sucessfully created.</legend>");
                 HttpSession session = request.getSession();
-                session.setAttribute("user", request.getParameter("username"));
-                out.println("<p>Name:" + this.htmlEncode(request.getParameter("username")) + "</p>");
+                session.setAttribute("user", username);
+                out.println("<p>Name:" + this.htmlEncode(username) + "</p>");
                 out.println("<meta http-equiv=\"Refresh\" content=\"3;url=./index.jsp\">");
             } else {
                 out.println("<legend>ERROR: New record is failed to create.</legend>");
