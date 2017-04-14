@@ -3,7 +3,21 @@
     Created on : Apr 7, 2017, 4:21:09 PM
     Author     : yuenyauli2
 --%>
+<!-- Google Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
 
+<!-- Bootstrap -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="css/font-awesome.min.css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/owl.carousel.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
 <%@page import="javabean.User"%>
 
 <% 
@@ -72,7 +86,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="logo">
-                    <h1><a href="./">Toy Market</a></h1>
+                    <h1><a href="./">Book Store</a></h1>
                 </div>
             </div>
 

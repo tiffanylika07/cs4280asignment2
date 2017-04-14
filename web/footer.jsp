@@ -5,6 +5,7 @@
 --%>
 
 <div class="footer-bottom-area">
+    <hr>
     <div class="container">
         <div class="row">
             <div class="note">
