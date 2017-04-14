@@ -3,6 +3,8 @@
     Created on : Apr 7, 2017, 2:02:43 PM
     Author     : yuenyauli2
 --%>
+
+<%@page import="java.util.ArrayList"%>
 <!-- Google Fonts -->
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
@@ -24,7 +26,7 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Category List</title>
     </head>
     <body>
             <!-- Header -->
@@ -32,7 +34,17 @@
     
     <!-- Main Menu -->
     <jsp:include page="menu.jsp"/>
-        <h1>Hello World!</h1>
-        <a href="./viewCategory.jsp"> abcde</a>
+   >        
+    <div class="col-md-3">
+                <h2>Category</h2>
+                
+                <ul>
+                    <li> <a href="Books?type=category">All Category</a></li>
+
+                </ul>
+                
+                
+            </div>
+
     </body>
 </html>
