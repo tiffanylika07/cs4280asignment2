@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javabean.User;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,8 +46,10 @@ public class Login extends HttpServlet {
                 out.println("<h1>Wrong username or password. Please try again.</h1>");
                 out.println("<a href=\"javascript:window.history.back();\">Back</a>");
             } else {
+                User user = new User();
+                user.setUsername(htmlEncode(request.getParameter("username")));
                 HttpSession session = request.getSession();
-                session.setAttribute("user", htmlEncode(request.getParameter("username")));
+                session.setAttribute("userInfo", user);
                 out.println("<h1>You Login as " + htmlEncode(request.getParameter("username")) + "</h1>");
                 out.println("<h1>You will be back to menu in 3 seconds.</h1>");
                 out.println("<meta http-equiv=\"Refresh\" content=\"3;url=./index.jsp\">");
