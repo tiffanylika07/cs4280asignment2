@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javabean.User;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,15 +43,17 @@ public class Signup extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             UserDB userDB = new UserDB();
-            String username=request.getParameter("username");
-            String password=request.getParameter("password");
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
             if (userDB.isOccupiedUser(username)) {
                 out.println("<legend>ERROR: Username is already used. Please try again.</legend>");
                 out.println("<a href=\"javascript:window.history.back();\">Back</a>");
             } else if (userDB.addRecord(username, password)) {
                 out.println("<legend>New User Account is sucessfully created.</legend>");
+                User user = new User();
+                user.setUsername(htmlEncode(request.getParameter("username")));
                 HttpSession session = request.getSession();
-                session.setAttribute("user", username);
+                session.setAttribute("userInfo", user);
                 out.println("<p>Name:" + this.htmlEncode(username) + "</p>");
                 out.println("<meta http-equiv=\"Refresh\" content=\"3;url=./index.jsp\">");
             } else {
