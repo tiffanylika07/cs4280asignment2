@@ -4,6 +4,7 @@
     Author     : yuenyauli2
 --%>
 
+<%@page import="javabean.Book"%>
 <%@page import="javabean.Category"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -28,41 +29,40 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Category -ABC BookStore</title>
+        <title><%=request.getAttribute("categoryName")%> - ABC BookStore</title>
     </head>
     <body>
-    <!-- Header -->
+            <!-- Header -->
     <jsp:include page="header.jsp"/>
     
     <!-- Main Menu -->
     <jsp:include page="menu.jsp"/>
    
     <div class="maincontent-area">
-    <p style="color: red;">${errorString}</p>
- 
-   <div class="content_container">
-    <div class="w-clearfix">
+    <h2>Books</h2>
+    <div class="content_container">
+        <div class="w-clearfix">
         <%
-           List<Category> list = (List<Category>) request.getAttribute("categoryList");
+           List<Book> list = (List<Book>) request.getAttribute("bookList");
            if(list!=null){
-             for(Category c :list){
-                out.println("<div class=\"_33tile f_left\">");
-                out.println("<div class=\"hero-tile\">");
-
-                out.println("<a href=\"./BookController?action=category&categoryID="+c.getID()+"\" class=\"w_inline_block tile_link\">");
-                out.println("<div class=\"tile-text\">"+c.getCategoryName()+"<br></div>");
-                out.println("<div class=\"tile-image\" style=\"background-image: url(./image/"+c.getImgSrc().trim()+");\">");
-                out.println("<div class=\"tile-overlay\"></div>");
-                out.println("</div></a></div></div>");
-
-              }
+                for(Book k :list){
+                    out.println("<div class=\"_60tile f_left\">");
+                    out.println("<a href=\"./BookController?action=single&bookID="+k.getID()+"\">");
+                    out.println("<div><img  src=\"image/"+k.getImg_File_Name()+"\" style=\"width:50%;\"/> </div>");
+                    out.println("<div>");
+                    out.println("<span class=\"bookName\"  >"+k.getBook_Name()+" </span></a>");
+                    out.println("<span class=\"authorName\"  >"+k.getAuthor()+" </span>");
+                    out.println("<span class=\"pressName\"  >"+k.getPress()+" </span>");
+                    out.println("<span class=\"bookPrice\"  >$"+k.getPrice()+" </span>");
+                    out.println("<span class=\"loyaltyPoint\"  >"+k.getLoyalty_Point()+" </span>");
+                    out.println("</div>");
+                    out.println("<br/></div>");
+                }
            }
-         %>
-         
-         
+        %>
+        </div>
     </div>
-    
-    </div>       
+                
     </div>
     <!-- Footer -->
     <jsp:include page="footer.jsp"/> 

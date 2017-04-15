@@ -34,7 +34,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="<%=pageName.equals("index") ? "active" : "" %>"><a href="index.jsp">Home</a></li>
-                    <li class="<%=(pageName.equals("shop") || pageName.equals("single")) ? "active" : "" %>"><a href="viewCategory.jsp">Category</a></li>
+                    <li class="<%=(pageName.equals("viewCategory") ) ? "active" : "" %>"><a href="./CategoryController">Category</a></li>
+                    <li class="<%=(pageName.equals("viewBooksByCategory") ||pageName.equals("searchBooks")) ? "active" : "" %>"><a href="./BookController?action=search">Books</a></li>
                 </ul>                       
             </div>                
         </div>

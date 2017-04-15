@@ -72,7 +72,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="logo">
-                    <h1><a href="./">Toy Market</a></h1>
+                    <h1><a href="./index.jsp">ABC BookStore</a></h1>
                 </div>
             </div>
 

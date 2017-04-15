@@ -24,7 +24,7 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>ABC BookStore</title>
     </head>
     <body>
             <!-- Header -->
@@ -33,6 +33,8 @@
     <!-- Main Menu -->
     <jsp:include page="menu.jsp"/>
         <h1>Hello World!</h1>
-        <a href="./viewCategory.jsp"> abcde</a>
+        <a href="./CategoryController"> abcde</a>
+     <!-- Footer -->
+    <jsp:include page="footer.jsp"/> 
     </body>
 </html>
