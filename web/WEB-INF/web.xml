@@ -12,6 +12,10 @@
         <servlet-name>BookController</servlet-name>
         <servlet-class>servlet.BookController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MyAccount</servlet-name>
+        <servlet-class>servlet.MyAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>books</servlet-name>
         <url-pattern>/books</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>BookController</servlet-name>
         <url-pattern>/BookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyAccount</servlet-name>
+        <url-pattern>/MyAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

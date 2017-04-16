@@ -11,15 +11,19 @@
         <title>Book Store - Create Account</title>
     </head>
     <body>
-    <jsp:include page="header.jsp"/>
-    <center>
-        <h1>Book Store - Create Account</h1>
-        <form action="Signup.do" method="post">
-            <p>Username: <input name="username" type="text" /></p>
-            <p>password: <input name="password" type="password" /></p>
-            <input type="submit" value="Signup"/>
-        </form>
-    </center>
-    <jsp:include page="footer.jsp"/>
-</body>
+        <!-- Header -->
+        <jsp:include page="header.jsp"/>
+    
+        <!-- Main Menu -->
+        <jsp:include page="menu.jsp"/>
+        <center>
+            <h1>Book Store - Create Account</h1>
+            <form action="Signup.do" method="post">
+                <p>Username: <input name="username" type="text" /></p>
+                <p>password: <input name="password" type="password" /></p>
+                <input type="submit" value="Signup"/>
+            </form>
+        </center>
+        <jsp:include page="footer.jsp"/>
+    </body>
 </html>
