@@ -46,11 +46,38 @@ public class Login extends HttpServlet {
                 out.println("<h1>Wrong username or password. Please try again.</h1>");
                 out.println("<a href=\"javascript:window.history.back();\">Back</a>");
             } else {
-                User user = new User();
-                user.setUsername(htmlEncode(request.getParameter("username")));
+                User user = UserDB.getUser(htmlEncode(request.getParameter("username")));
                 HttpSession session = request.getSession();
                 session.setAttribute("userInfo", user);
-                out.println("<h1>You Login as " + htmlEncode(request.getParameter("username")) + "</h1>");
+                out.println("<h1>You Login as " + htmlEncode(request.getParameter("username")) + " successfully</h1>");
+                out.println("<h1>You will be back to menu in 3 seconds.</h1>");
+                out.println("<meta http-equiv=\"Refresh\" content=\"3;url=./index.jsp\">");
+            }
+            out.println("</body>");
+            out.println("</html>");
+        } finally {
+            out.close();
+        }
+    }
+
+    protected void processLogout(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Book Store - Logout</title>");
+            out.println("</head>");
+            out.println("<body>");
+            HttpSession session = request.getSession();
+            if (session.getAttribute("userInfo") == null) {
+                out.println("<h1>You are already logged out.</h1>");
+                out.println("<a href=\"javascript:window.history.back();\">Back</a>");
+            } else {
+                session.setAttribute("userInfo", null);
+                out.println("<h1>You are successfully logged out.</h1>");
                 out.println("<h1>You will be back to menu in 3 seconds.</h1>");
                 out.println("<meta http-equiv=\"Refresh\" content=\"3;url=./index.jsp\">");
             }
@@ -73,7 +100,11 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        if ("logout".equals(request.getParameter("action"))){
+            processLogout(request, response);
+        }else{
+            processRequest(request, response);
+        }
     }
 
     /**

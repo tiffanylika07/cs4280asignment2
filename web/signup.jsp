@@ -21,6 +21,7 @@
             <form action="Signup.do" method="post">
                 <p>Username: <input name="username" type="text" /></p>
                 <p>password: <input name="password" type="password" /></p>
+                <p>Email: <input name="email" type="text" /></p>
                 <input type="submit" value="Signup"/>
             </form>
         </center>

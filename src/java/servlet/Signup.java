@@ -45,16 +45,19 @@ public class Signup extends HttpServlet {
             UserDB userDB = new UserDB();
             String username = request.getParameter("username");
             String password = request.getParameter("password");
+            String email = request.getParameter("email");
             if (userDB.isOccupiedUser(username)) {
                 out.println("<legend>ERROR: Username is already used. Please try again.</legend>");
                 out.println("<a href=\"javascript:window.history.back();\">Back</a>");
-            } else if (userDB.addRecord(username, password)) {
+            } else if (userDB.addRecord(username, password,email,"user")) {
                 out.println("<legend>New User Account is sucessfully created.</legend>");
                 User user = new User();
-                user.setUsername(htmlEncode(request.getParameter("username")));
+                user.setUsername(this.htmlEncode(username));
+                user.setRole("user");
                 HttpSession session = request.getSession();
                 session.setAttribute("userInfo", user);
-                out.println("<p>Name:" + this.htmlEncode(username) + "</p>");
+                out.println("<legend>Name:" + this.htmlEncode(username) + "</legend>");
+                out.println("<legend>You will be back to menu in 3 seconds.</legend>");
                 out.println("<meta http-equiv=\"Refresh\" content=\"3;url=./index.jsp\">");
             } else {
                 out.println("<legend>ERROR: New record is failed to create.</legend>");

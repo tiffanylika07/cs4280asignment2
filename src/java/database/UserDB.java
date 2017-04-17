@@ -56,17 +56,19 @@ public class UserDB {
             return false;
         }
     }
-    
-    public boolean addRecord(String username, String password) {
+
+    public boolean addRecord(String username, String password, String email, String role) {
         Connection connection = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
 
         try {
             connection = ConnectionUtil.getConnection();
-            pStmnt = connection.prepareStatement("INSERT INTO [USER] (username,password) VALUES (? , ?)");
+            pStmnt = connection.prepareStatement("INSERT INTO [USER] (username,password,email,role) VALUES (? , ? , ? , ?)");
             pStmnt.setString(1, username);
             pStmnt.setString(2, password);
+            pStmnt.setString(3, email);
+            pStmnt.setString(4, role);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
                 isSuccess = true;
@@ -87,4 +89,28 @@ public class UserDB {
         return isSuccess;
     }
     
+        public static User getUser(String username) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        try {
+            cnnct = ConnectionUtil.getConnection();
+            String preQueryStatement = "SELECT * FROM [USER] WHERE username=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, username);
+            ResultSet rs = pStmnt.executeQuery();
+            if (rs.next()) {
+                User user = new User();
+                user.setUsername(rs.getString("username"));
+                user.setRole(rs.getString("role"));
+                return user;
+            } else {
+                return null;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
 }

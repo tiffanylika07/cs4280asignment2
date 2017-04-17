@@ -12,6 +12,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            table{
+                font-size:20px;
+            }
+        </style>
         <title>My Account</title>
     </head>
     <body>
@@ -29,11 +34,38 @@
                 PreparedStatement pStmnt = connection.prepareStatement(preQueryStatement);
                 pStmnt.setString(1, user.getUsername());
                 ResultSet rs = pStmnt.executeQuery();
+                String email = null;
+                float money = 0;
+                int LP = 0;
                 if (rs.next()){
-                    
+                    email = rs.getString("email");
+                    money = rs.getFloat("money"); 
+                    LP = rs.getInt("loyalPoint"); 
                 }
         %>
         <h1>My Account Information</h1>
+        <table>
+            <tr>
+                <td>Username:</td>
+                <td><%=user.getUsername()%></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><%=email%></td>
+            </tr>
+            <tr>
+                <td>Money:</td>
+                <td><%=money%></td>
+            </tr>
+            <tr>
+                <td>Loyal Point:</td>
+                <td><%=LP%></td>
+            </tr>
+            <tr>
+                <td>Role:</td>
+                <td><%=user.getRole()%></td>
+            </tr>
+        </table>
         <%
         } else {
         %>

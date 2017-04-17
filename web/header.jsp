@@ -27,7 +27,7 @@
     if (session.getAttribute("userInfo") != null) {
         isLogin = true;
         user = (User) session.getAttribute("userInfo");
-        if (user.getGroupId() == 0)
+        if ("admin".equals(user.getRole()))
             isAdmin = true;
     }
 %>
@@ -67,7 +67,7 @@
                     <ul class="list-unstyled list-inline">
                         <% if (isLogin) { %>
                             <li><i class='glyphicon glyphicon-user'></i> Hi <%=user.getUsername()%> </li>           
-                            <li><a href="#logout" onclick="onClickDirectPage('login?action=logout');"><i class="glyphicon glyphicon-log-in"></i> Logout</a></li>
+                            <li><a href="login.do?action=logout"><i class="glyphicon glyphicon-log-in"></i> Logout</a></li>
                         <% } else { %>
                             <li><a href="signup.jsp"><i class="glyphicon glyphicon-pencil"></i> Sign up</a></li>
                             <li><a href="login.jsp"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>
