@@ -37,6 +37,9 @@
                     <li class="<%=pageName.equals("index") ? "active" : ""%>"><a href="index.jsp">Home</a></li>
                     <li class="<%=(pageName.equals("viewCategory")) ? "active" : ""%>"><a href="./CategoryController">Category</a></li>
                     <li class="<%=(pageName.equals("viewBooksByCategory") || pageName.equals("searchBooks")) ? "active" : ""%>"><a href="./BookController?action=search">Books</a></li>
+                    <% if (isAdmin) { %>
+                        <li class="<%=(pageName.equals("adminMenu")) ? "active" : ""%>"><a href="./AdminController?action=main">Admin</a></li>
+                    <% } %>
                 </ul>                       
             </div>                
         </div>
