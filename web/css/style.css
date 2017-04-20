@@ -118,7 +118,7 @@ z-index: 999;}
     color: #5a88ca;
 }
 .shopping-item {
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     float: right;
     font-size: 18px;
     margin-top: 40px;
@@ -172,7 +172,7 @@ z-index: 999;}
     padding: 20px;
 }
 
-.mainmenu-area ul.navbar-nav li:hover a, .mainmenu-area ul.navbar-nav li.active a {background: #5a88ca; color:#FFF;}
+.mainmenu-area ul.navbar-nav li:hover a, .mainmenu-area ul.navbar-nav li.active a {background: salmon; color:#FFF;}
 .mainmenu-area .nav > li > a:focus {color: #FFF;}
 
 .slider-area { width:80%; position:relative; margin:0 auto; padding:5px;}

@@ -53,20 +53,21 @@
     
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
-                <div class="header-left">
+            <div class="col-md-12">
+                <div class="header-right">
                     <ul class="list-unstyled list-inline">
+                         <% if (isLogin) { %>
+                         <li><i class='glyphicon glyphicon-user'></i> Hi <%=user.getUsername()%> </li>     
                         <li><a href="MyAccount"><i class="fa fa-user"></i> My Account</a></li>
                         <li><a href="cart.jsp"><i class="glyphicon glyphicon-shopping-cart"></i> My Cart</a></li>
-                    </ul>
+<!--                    </ul>
                 </div>
             </div> 
         
             <div class="col-md-4">
                 <div class="header-right">
-                    <ul class="list-unstyled list-inline">
-                        <% if (isLogin) { %>
-                            <li><i class='glyphicon glyphicon-user'></i> Hi <%=user.getUsername()%> </li>           
+                    <ul class="list-unstyled list-inline">-->
+                                  
                             <li><a href="login.do?action=logout"><i class="glyphicon glyphicon-log-in"></i> Logout</a></li>
                         <% } else { %>
                             <li><a href="signup.jsp"><i class="glyphicon glyphicon-pencil"></i> Sign up</a></li>
