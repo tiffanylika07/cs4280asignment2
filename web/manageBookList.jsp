@@ -22,16 +22,30 @@
     
     <!-- Main Menu -->
     <jsp:include page="menu.jsp"/>
-    <c:if test="${not empty message}">
-        <script>
-        window.addEventListener("load",function(){
-             alert("${message}");
-        }
-        </script>
-    </c:if>
+    <% 
+     String msg = (String)request.getAttribute("msg");//means you have to send the message as a parameter
+
+    %>
+
+    <%     
+     %>
     <div class="maincontent-area">
  
+    <script type="text/javascript">
+
+    function openPopup() {
+        var w = 450;
+        var h = 450;
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+        var strWindowFeatures = 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left;
+
+     return  window.open("addBook.jsp", "", strWindowFeatures);
+    }
+    </script>
     <div class="content_container">
+        <p>${msg}</p>
+        <a class="btn btn-default" href="javaScript:{openPopup();}" role="button">Add Book</a>
         <table class="table table-striped table-hover">
             <tr>
                 <th>ID</th>

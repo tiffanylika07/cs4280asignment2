@@ -29,7 +29,7 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><%=request.getAttribute("categoryName")%> - ABC BookStore</title>
+        <title><%=request.getAttribute("categoryName") == null ? "Search" : request.getAttribute("categoryName")%> - ABC BookStore</title>
     </head>
     <body>
             <!-- Header -->
@@ -39,32 +39,62 @@
     <jsp:include page="menu.jsp"/>
    
     <div class="maincontent-area">
-    <h2>Books</h2>
     <div class="content_container">
-        <div class="w-clearfix">
+            <div id="body">
+      <div class="inner">
         <%
            List<Book> list = (List<Book>) request.getAttribute("bookList");
            if(list!=null){
+                int count = 0;
                 for(Book k :list){
+                   
+%>
+
+<!--            <div class="f_left" style="width:150px;height:200px;">
+                <div class="hero-tile">
+                    <a href="./BookController?action=single&bookID=<%=k.getID()%>" class="w_inline_block tile_link">
+                    <div class="tile-image" style="background-size: cover; background-image: url(image/<%=k.getImg_File_Name()%>)">
+                    </div>
+                    </a>
+                </div>
+                    
+            </div>-->
+
+        <div class="<% if (count%2==0) {%> leftbox <%} else{ %> rightbox <% } %>">
+          <h3><%= k.getBook_Name()%></h3>
+          <img src="image/<%=k.getImg_File_Name()%>" width="93" height="95" alt="photo 1" class="<% if (count%2==0) {%> left <%} else{ %> right <% } %>" />
+          <p><b>Author</b> <%= k.getAuthor()%></p>
+          <p><b>Press</b> <b><%= k.getPress()%></b> </p>
+          <p><b>Price:</b> <b><%= k.getPrice()%></b> </p>
+          <p class="readmore"><a href="./BookController?action=single&bookID=<%=k.getID()%>">READ MORE</a></p>
+          <div class="clear"></div>
+        </div>
+
+
+<!--                    out.println("<table>");
+                    out.println("<tr><th rowspan='5'></th><th></th></tr>");
                     out.println("<div class=\"_60tile f_left\">");
                     out.println("<a href=\"./BookController?action=single&bookID="+k.getID()+"\">");
                     out.println("<div><img  src=\"image/"+k.getImg_File_Name()+"\" style=\"width:50%;\"/> </div>");
-                    out.println("<div>");
                     out.println("<span class=\"bookName\"  >"+k.getBook_Name()+" </span></a>");
                     out.println("<span class=\"authorName\"  >"+k.getAuthor()+" </span>");
                     out.println("<span class=\"pressName\"  >"+k.getPress()+" </span>");
                     out.println("<span class=\"bookPrice\"  >$"+k.getPrice()+" </span>");
                     out.println("<span class=\"loyaltyPoint\"  >"+k.getLoyalty_Point()+" </span>");
                     out.println("</div>");
-                    out.println("<br/></div>");
+                    out.println("<br/></div>");-->
+        <%
                 }
            }
         %>
+        
+      </div>
+       
         </div>
     </div>
-                
     </div>
     <!-- Footer -->
     <jsp:include page="footer.jsp"/> 
     </body>
+    
 </html>

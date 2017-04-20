@@ -32,7 +32,7 @@
      %> 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><%=aBook.getImg_File_Name()%> - ABC BookStore</title>
+        <title><%=aBook.getBook_Name()%> - ABC BookStore</title>
     </head>
     <body>
             <!-- Header -->
@@ -42,13 +42,9 @@
     <jsp:include page="menu.jsp"/>
    
     <div class="maincontent-area">
-    <h2>Books</h2>
-                
     <p style="color: red;">${errorString}</p>
- 
 
-        <img class="singleBkImg" src="image/<%=aBook.getImg_File_Name()%>" style="width:50%;"/>
-                
+        <img class="singleBkImg" src="image/<%=aBook.getImg_File_Name()%>" style="  display: block;width: 40%;object-fit: cover;"/>
     </div>
     <!-- Footer -->
     <jsp:include page="footer.jsp"/> 

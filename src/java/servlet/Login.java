@@ -48,6 +48,7 @@ public class Login extends HttpServlet {
             } else {
                 User user = UserDB.getUser(htmlEncode(request.getParameter("username")));
                 HttpSession session = request.getSession();
+                session.setMaxInactiveInterval(900*1000);
                 session.setAttribute("userInfo", user);
                 out.println("<h1>You Login as " + htmlEncode(request.getParameter("username")) + " successfully</h1>");
                 out.println("<h1>You will be back to menu in 3 seconds.</h1>");

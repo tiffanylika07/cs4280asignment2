@@ -1245,7 +1245,7 @@ footer{
 ._40tile {
     position: relative;
     width: 40%;
-    height: 300px;
+    height: 50%;
     padding: 5px;
 }
 ._33tile {
@@ -1253,7 +1253,11 @@ footer{
     height: 300px;
     padding: 5px;
 }
-
+._20tile {
+    width: 20%;
+    height: 300px;
+    padding: 5px;
+}
 .hero-tile {
     position: relative;
     overflow-x: hidden;
@@ -1272,7 +1276,7 @@ footer{
     z-index: 3;
     color: #e6e6e6;
     text-align:right;
-    font-size: 30px;
+    font-size: 25px;
     font-family: 'Exo',  sans-serif;
     letter-spacing: 2px;
     line-height: 100%;
@@ -1327,4 +1331,143 @@ footer{
 .loginForm{
     margin:0 auto;
     width:50%;
+}
+.bookTable td{
+    white-space: nowrap;
+}
+.bookTable th{
+    white-space: nowrap;
+}
+
+img { border: 0; }
+
+#wrapper {
+	margin: auto;
+	text-align: left;
+	width: 748px;
+	position: relative;
+}
+
+
+.block {
+	display: block;
+}
+
+.clear {
+	clear: both;
+	height: 2px;
+	padding-top: 0;
+	margin-top: 0;
+	margin-bottom: 3px;
+	font-size: 1px;
+}
+
+.left {
+	float: left;
+	margin: 1px 8px 0px 0px;
+}
+
+.softright {
+	text-align: right;
+}
+
+.readmore {
+	text-align: center;
+}
+
+/* ***** */
+
+#inner {
+	border-left: 2px solid #fff;
+	border-right: 2px solid #fff;
+	background: white;
+	color: black;
+	margin-bottom: 10px;
+}
+
+#header {
+	background: url(images/header_bg.gif) repeat-x;
+	padding-top: 9px;
+	position: relative;
+}
+
+#header img {
+	display: block;
+}
+
+#nav {
+	position: absolute;
+	left: 550px;
+	top: 40px;
+	width: 200px;
+}
+
+#nav, #nav a {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#body {
+	float: right;
+	width: 100%;
+	margin: 2px 1px 0 0;
+	
+	border: 1px solid #e5e5e5;
+	position: relative;
+}
+
+#body p {
+	margin: 1em 0;
+	padding: 0;
+}
+
+#body .leftbox,
+#body .rightbox {
+	margin-top: 5px;
+	color: #464646;
+}
+
+#body .leftbox {
+	float: left;
+	width: 50%;
+}
+
+#body .rightbox {
+	float: right;
+	width: 252px;
+	margin-right: 18px;
+	border-left: 1px solid #e5e5e5;
+}
+
+* html #body .rightbox {
+	margin-right: 10px;
+}
+
+#body .br {
+	border-bottom: 1px solid #e5e5e5;
+}
+
+#body .readmore {
+	margin-top: -0.5em;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+#body .readmore a {
+	color: #ad1c1c;
+}
+
+#body .readmore a:hover {
+	color: #f73838;
+}
+
+#body h3 {
+	text-align: center;
+	font-family: "Keble Condensed", "KebleCondensed", "arial narrow", helvetica, arial, sans-serif;
+	font-size: 20px;
+	font-weight: normal;
+	color: #5d5d5d;
+	padding: 0 0 0 18px;
+	margin: 1px 0 3px 0;
 }

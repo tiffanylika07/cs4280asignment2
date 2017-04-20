@@ -26,81 +26,77 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <%
-        Book aBook = (Book) request.getAttribute("requestedBook");
-
-     %> 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Book - ABC BookStore</title>
+        <title>Add Book - ABC BookStore</title>
     </head>
     <body>
-            <!-- Header -->
-    <jsp:include page="header.jsp"/>
-    
-    <!-- Main Menu -->
-    <jsp:include page="menu.jsp"/>
-   
+    <% 
+     String msg = request.getParameter("message");//means you have to send the message as a parameter
+        if(msg != null)
+        { 
+    %>
+    <script type="text/javascript">
+         alert(<%= msg %>);
+         //window.opener.location.reload();
+         window.close();
+    </script>
+    <%     
+        }
+     %>   
+        
     <div class="maincontent-area">
-    <h2>Edit Book</h2>
-    <form class="form-horizontal" method="POST" action="./AdminController?action=editBook">
-            <div class="form-group">
-                <label for="inputID" class="col-sm-2 control-label">ID</label>
-                <div class="col-sm-2">
-                  <input type="number" class="form-control" id="inputID" name="bookID" value="<%= aBook.getID()%>" readonly="readonly">
-                </div>
-            </div>
+        <h3>Add Book</h3>
+    <form name="addBookForm" class="form-horizontal" method="POST" action="./AdminController?action=addBook">
             <div class="form-group">
               <label for="name" class="col-sm-2 control-label">Name</label>
               <div class="col-sm-6">
-                <input type="text" class="form-control" id="name"  name="bookName" value="<%=aBook.getBook_Name()%>">
+                <input type="text" class="form-control" id="name"  name="bookName">
               </div>
             </div>
             <div class="form-group">
                 <label for="author" class="col-sm-2 control-label">Author</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="author" name="Author" value="<%=aBook.getAuthor() %>">
+                  <input type="text" class="form-control" id="author" name="Author" >
                 </div>
             </div>
             <div class="form-group">
                 <label for="price" class="col-sm-2 control-label">Price($)</label>
                 <div class="col-sm-2">
-                  <input type="number" class="form-control" id="price"  name="Price" value="<%=aBook.getPrice()%>">
+                    <input type="number" class="form-control" id="price"  name="Price" >
                 </div>
             </div>
             <div class="form-group">
                 <label for="press" class="col-sm-2 control-label">Press</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="Press" name="Press" value="<%=aBook.getPress()%>">
+                    <input type="text" class="form-control" id="Press" name="Press" >
                 </div>
             </div>     
             <div class="form-group">
                 <label for="description" class="col-sm-2 control-label">Description</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="description"  name="Description" value="<%=aBook.getDescription()%>">
+                    <input type="text" class="form-control" id="description"  name="Description" >
                 </div>
             </div>
             <div class="form-group">
                 <label for="loyalty" class="col-sm-2 control-label">Loyalty Points</label>
                 <div class="col-sm-3">
-                  <input type="number" class="form-control" id="loyalty" name="Loyalty_Points" value="<%=aBook.getLoyalty_Point()%>">
+                    <input type="number" class="form-control" id="loyalty" name="Loyalty_Points" >
                 </div>
             </div>
             <div class="form-group">
                 <label for="category" class="col-sm-2 control-label">Category</label>
                 <div class="col-sm-2">
-                  <input type="number" class="form-control" id="categoy"  name="Category" value="<%=aBook.getCategory_ID() %>" min="1" max="6">
+                  <input type="number" class="form-control" id="categoy"  name="Category" min="1" max="6">
                 </div>
             </div>
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Save</button>
+                <button type="submit"  class="btn btn-default">Add</button>
               </div>
             </div>
 </form>
-        <a class="btn btn-default" href="./AdminController?action=manageBooks" role="button">Back to Book List</a>
-    </div>
-    <!-- Footer -->
-    <jsp:include page="footer.jsp"/> 
+
+    </body>
     </body>
 </html>

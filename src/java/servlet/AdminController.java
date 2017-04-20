@@ -48,7 +48,7 @@ public class AdminController extends HttpServlet {
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/adminMenu.jsp");
                 dispatcher.forward(request, response);
             }
-            else if (action.endsWith("manageBooks")){
+            else if (action.equals("manageBooks")){
                 this.manageBookList(request,response);
             }
             else if(action.equals("getBook")){
@@ -59,6 +59,9 @@ public class AdminController extends HttpServlet {
             }
             else if (action.equals("removeBook")){
                 this.removeBook(request,response);
+            }
+            else if (action.equals("addBook")){
+                this.addBook(request, response);
             }
         } catch (Exception ex) {
             Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -234,8 +237,51 @@ public class AdminController extends HttpServlet {
                     
             // execute the SQL statement
              int rows = pStmnt.executeUpdate();
-             request.setAttribute("message", "Deleted Successfully.");
-             this.manageBookList(request, response);
+            out.println(" <script type=\"text/javascript\">");
+            out.println("confirm('Deleted Successfully');");
+            out.println("document.location.href=\"./AdminController?action=manageBooks\";");
+            out.println("</script>");
+
+        } catch (Exception ex) {
+            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
+            out.println(ex);
+        }
+    }
+    
+    private void addBook(HttpServletRequest request, HttpServletResponse response) 
+              throws ServletException, IOException{
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        PrintWriter out = response.getWriter();
+        try{
+            cnnct = ConnectionUtil.getConnection();
+            String preQueryStatement =  "INSERT INTO [BOOK] "
+                            + "(   [Book_Name],"
+                            + "    [Author]," 
+                            + "    [Price]," 
+                            + "    [Press]," 
+                            + "    [Category_ID]," 
+                            + "    [Description], "
+                            + "    [Loyalty_Point]) "
+                            +    "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1,request.getParameter("bookName"));
+            pStmnt.setString(2,request.getParameter("Author"));
+            pStmnt.setInt(3,Integer.parseInt(request.getParameter("Price")));
+            pStmnt.setString(4,request.getParameter("Press"));
+            pStmnt.setInt(5,Integer.parseInt(request.getParameter("Category")));
+            pStmnt.setString(6,request.getParameter("Description"));
+            pStmnt.setInt(7,Integer.parseInt(request.getParameter("Loyalty_Points")));
+                    
+                    
+            // execute the SQL statement
+             int rows = pStmnt.executeUpdate();
+            out.println(" <script type=\"text/javascript\">");
+            out.println("confirm('Added Successfully');");
+            out.println("window.opener.location.href=\"./AdminController?action=manageBooks\";");
+            out.println("window.close()");
+            out.println("</script>");
 
         } catch (Exception ex) {
             Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);

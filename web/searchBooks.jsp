@@ -36,10 +36,18 @@
     
     <!-- Main Menu -->
     <jsp:include page="menu.jsp"/>
-   
+
     <div class="maincontent-area">
-        <h2>Search Books<h2>
-                
+        <div style="margin-left: auto; margin-right: auto; width:70%;">
+    <form action="./BookController?action=search" method="post">
+        <div class="input-group input-group-lg" >
+              <input type="text" class="form-control"  name="search" placeholder="Search for...">
+              <span class="input-group-btn">
+                 <button class="btn btn-default" type="submit" >Search</button>
+              </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->  
+    </form>
     </div>
     <!-- Footer -->
     <jsp:include page="footer.jsp"/> 

@@ -54,7 +54,9 @@ public class BookController extends HttpServlet {
             }
             else if (action.equals("search")){
                     this.searchBook(request,response);
-
+            }
+            else if (action.equals("viewSearch")){
+                response.sendRedirect("./searchBooks.jsp");
             }
         } catch (Exception ex) {
             Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -106,9 +108,10 @@ public class BookController extends HttpServlet {
             // Store info in request attribute, before forward to views
             request.setAttribute("bookList", list);
             request.setAttribute("categoryName",categoryName);
+            request.setAttribute("action","category");
 
 
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/viewBooksByCategory.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/viewBooksList.jsp");
             dispatcher.forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -190,16 +193,51 @@ public class BookController extends HttpServlet {
 
     private void searchBook(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException{
-            
-            try{
-                String searchInput = request.getParameter("input");
-                
-                
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/searchBooks.jsp");
-                dispatcher.forward(request, response);
-            } catch (Exception ex) {
-                Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        PrintWriter out = response.getWriter();
+        try{
+            cnnct = ConnectionUtil.getConnection();
+            String preQueryStatement = "SELECT * FROM [Book] "
+                    + "where (Book_Name like ? )or "
+                    + "(Author like ? )or "
+                    + "(Press like ? )or "
+                    + "(Description like ? )";
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1,"%"+ request.getParameter("search") +"%");
+            pStmnt.setString(2,"%"+ request.getParameter("search") +"%");
+            pStmnt.setString(3,"%"+ request.getParameter("search") +"%");
+            pStmnt.setString(4,"%"+ request.getParameter("search") +"%");
+            ResultSet rs = pStmnt.executeQuery();
+            List<Book> list = new ArrayList<Book>();
+            while(rs.next()){ 
+                    Book book = new Book();
+                    book.setBook_Name(rs.getString("Book_Name"));
+                    book.setID(rs.getInt("ID"));
+                    book.setAuthor(rs.getString("Author"));
+                    book.setPrice(rs.getInt("Price"));
+                    book.setPress(rs.getString("Press"));
+                    book.setDescription(rs.getString("Description"));
+                    book.setLoyalty_Point(rs.getInt("Loyalty_Point"));
+                    book.setImg_File_Name(rs.getString("Img_File_Name"));
+                    list.add(book);
             }
+            //Check if there are no matching records
+            if(list.size()==0){
+                request.setAttribute("noRecords",true);
+            }
+            else{
+                request.setAttribute("noRecords",true);
+            }
+            // Store info in request attribute, before forward to views
+            request.setAttribute("bookList", list);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/viewBooksList.jsp");
+            dispatcher.forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
+            out.println(ex);
+        }
     }
 
 }
