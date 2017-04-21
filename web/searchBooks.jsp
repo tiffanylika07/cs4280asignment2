@@ -28,7 +28,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Search Books - ABC BookStore</title>
+        <title>Search Books - forWORDS</title>
     </head>
     <body>
             <!-- Header -->

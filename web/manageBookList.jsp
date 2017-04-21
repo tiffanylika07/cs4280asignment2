@@ -14,7 +14,7 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Mange Book List -ABC BookStore</title>
+        <title>Mange Book List -forWORDS</title>
     </head>
     <body>
     <!-- Header -->

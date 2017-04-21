@@ -29,7 +29,7 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><%=request.getAttribute("categoryName") == null ? "Search" : request.getAttribute("categoryName")%> - ABC BookStore</title>
+        <title><%=request.getAttribute("categoryName") == null ? "Search" : request.getAttribute("categoryName")%> - forWORDS</title>
     </head>
     <body>
             <!-- Header -->

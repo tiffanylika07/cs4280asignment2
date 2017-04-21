@@ -13,7 +13,7 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Admin -ABC BookStore</title>
+        <title>Admin -forWORDS</title>
     </head>
     <body>
     <!-- Header -->

@@ -32,7 +32,7 @@
      %> 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><%=aBook.getBook_Name()%> - ABC BookStore</title>
+        <title><%=aBook.getBook_Name()%> - forWORDS</title>
     </head>
     <body>
             <!-- Header -->

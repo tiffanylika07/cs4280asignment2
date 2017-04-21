@@ -9,7 +9,7 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>ABC BookStore</title>
+        <title>forWORDS</title>
     </head>
     <body>
             <!-- Header -->
