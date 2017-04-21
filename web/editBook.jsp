@@ -77,7 +77,7 @@
             <div class="form-group">
                 <label for="description" class="col-sm-2 control-label">Description</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="description"  name="Description" value="<%=aBook.getDescription()%>">
+                    <textarea type="text" class="form-control" id="description"  name="Description" rows="10" ><%=aBook.getDescription()%></textarea>
                 </div>
             </div>
             <div class="form-group">

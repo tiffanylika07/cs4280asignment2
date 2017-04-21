@@ -9,11 +9,11 @@ package javabean;
  *
  * @author Kamtso
  */
-public class cartObject {
+public class CartObject {
     private Book book;
     private int quantity;
     
-    public cartObject(Book _book,int _quan){
+    public CartObject(Book _book,int _quan){
         book = _book;
         quantity = _quan;
     }

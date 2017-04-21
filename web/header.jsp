@@ -80,24 +80,16 @@
                 
                  <ul class="nav navbar-nav navbar-right">
                          <% if (isLogin) { %>
-                         <li><i class='glyphicon glyphicon-user'></i> Hi <%=user.getUsername()%> </li>     
+                         <li><a href=""><i class='glyphicon glyphicon-user'></i> Hi <%=user.getUsername()%></a> </li>     
                         <li><a href="MyAccount"><i class="fa fa-user"></i> My Account</a></li>
                         <li><a href="cart.jsp"><i class="glyphicon glyphicon-shopping-cart"></i> My Cart</a></li>
-<!--                    </ul>
-                </div>
-            </div> 
-        
-            <div class="col-md-4">
-                <div class="header-right">
-                    <ul class="list-unstyled list-inline">-->
-                                  
-                            <li><a href="login.do?action=logout"><i class="glyphicon glyphicon-log-in"></i> Logout</a></li>
+                        <li><a href="login.do?action=logout"><i class="glyphicon glyphicon-log-in"></i> Logout</a></li>
                         <% } else { %>
                             <li><a href="signup.jsp"><i class="glyphicon glyphicon-pencil"></i> Sign up</a></li>
                             <li><a href="login.jsp"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>
                         <% } %>
                         
-                    </ul>
+                </ul>
             </div>                
         </div>
     </div>
@@ -110,11 +102,19 @@
         .logo h1{
             padding-left: 1em;
         }
+        .headerPart{
+            border-bottom:0.5px;
+            border-bottom-style: groove;
+        }
+        .container{
+            width:80%;
+            margin:auto;
+        }
     </style>
 <!-- Site Branding Area -->
 <div class="site-branding-area">
     <div class="container">
-        <div class="row">
+        <div class="row headerPart">
             <div class="col-sm-6">
                 <div class="logo">
                     <h1 id ="title"><a href="./index.jsp">forWORDS</a></h1>

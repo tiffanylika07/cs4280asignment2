@@ -113,6 +113,7 @@ public class BookController extends HttpServlet {
 
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/viewBooksList.jsp");
             dispatcher.forward(request, response);
+            
         } catch (Exception ex) {
             Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
             out.println(ex);

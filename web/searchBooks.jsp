@@ -31,7 +31,7 @@
         <title>Search Books - forWORDS</title>
     </head>
     <body>
-            <!-- Header -->
+    <!-- Header -->
     <jsp:include page="header.jsp"/>
     
     

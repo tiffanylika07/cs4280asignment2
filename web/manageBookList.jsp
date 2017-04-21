@@ -43,38 +43,45 @@
      return  window.open("addBook.jsp", "", strWindowFeatures);
     }
     </script>
+    <style>
+        tbody{
+            overflow: scroll;
+        }
+</style>
     <div class="content_container">
         <p>${msg}</p>
         <a class="btn btn-default" href="javaScript:{openPopup();}" role="button">Add Book</a>
         <table class="table table-striped table-hover">
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Author</th>
-                <th>Price($)</th>
-                <th>Press</th>
-                <th>Description</th>
-                <th>Loyalty Points</th>
-                <th>Category ID</th>
-                <th></th>
-                <th></th>
+                <th class="col-sm-1">ID</th>
+                <th class="col-sm-1">Name</th>
+                <th class="col-sm-1">Author</th>
+                <th class="col-sm-1">Price($)</th>
+                <th class="col-sm-1">Press</th>
+                <th class="col-sm-2">Description</th>
+                <th class="col-sm-1">Loyalty Points</th>
+                <th class="col-sm-1">Category ID</th>
+                <th class="col-sm-1"></th>
+                <th class="col-sm-1"></th>
             </tr>
             <%
             List<Book> list = (List<Book>) request.getAttribute("bookList");
             if(list!=null){
                 for(Book k :list){
-                    out.println("<tr>");
-                    out.println("<td>"+k.getID()+" </td>");
-                    out.println("<td class=\"bookName\"  >"+k.getBook_Name()+" </td>");
-                    out.println("<td class=\"authorName\"  >"+k.getAuthor()+" </td>");
-                    out.println("<td class=\"bookPrice\"  >$"+k.getPrice()+" </td>");
-                    out.println("<td class=\"pressName\"  >"+k.getPress()+" </td>");
-                    out.println("<td>"+k.getDescription()+"</td>");
-                    out.println("<td class=\"loyaltyPoint\"  >"+k.getLoyalty_Point()+" </td>");
-                    out.println("<td class=\"loyaltyPoint\"  >"+k.getCategory_ID()+"</td>");
-                    out.println("<td><a class=\"btn btn-default\" href=\"./AdminController?action=getBook&bookID="+k.getID()+"\" role=\"button\">Edit</a></td>");
-                    out.println("<td><a class=\"btn btn-default\" href=\"./AdminController?action=removeBook&bookID="+k.getID()+"\" role=\"button\"  onclick=\"return confirm('Are you sure you want to delete this book?')\">Remove</a></td>");
-                    out.println("<tr>");
+            %>
+                    <tr>
+                    <td><%=k.getID()%></td>
+                    <td><%=k.getBook_Name()%></td>
+                    <td><%=k.getAuthor()%></td>
+                    <td><%=k.getPrice()%></td>
+                    <td><%=k.getPress()%></td>
+                    <td><%=k.getDescription()%></td>
+                    <td><%=k.getLoyalty_Point()%></td>
+                    <td><%=k.getCategory_ID()%></td>
+                    <td><a class="btn btn-default" href="./AdminController?action=getBook&bookID=<%=k.getID()%>" role=\"button\">Edit</a></td>
+                    <td><a class="btn btn-default" href="./AdminController?action=removeBook&bookID=<%=k.getID()%>" role=\"button\"  onclick=\"return confirm('Are you sure you want to delete this book?')\">Remove</a></td>
+                    <tr>
+        <%
                 }
             }
         %>

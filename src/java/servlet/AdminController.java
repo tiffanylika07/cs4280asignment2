@@ -213,7 +213,10 @@ public class AdminController extends HttpServlet {
                     
             // execute the SQL statement
                 int rows = pStmnt.executeUpdate();
-                this.getBook(request,response);
+            out.println(" <script type=\"text/javascript\">");
+            out.println("confirm('Updated Successfully');");
+            out.println("document.location.href=\"./AdminController?action=manageBooks\";");
+            out.println("</script>");
 
         } catch (Exception ex) {
             Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);

@@ -3,7 +3,7 @@
     Created on : 2017年4月17日, 下午07:26:24
     Author     : Kamtso
 --%>
-<%@page import="javabean.cartObject"%>
+<%@page import="javabean.CartObject"%>
 <%@page import="javabean.Book"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="javabean.User"%>
@@ -27,11 +27,11 @@
             <th>Price</th>
             </tr>
             <%
-                ArrayList<cartObject> cartList = (ArrayList<cartObject>) session.getAttribute("cart");
+                ArrayList<CartObject> cartList = (ArrayList<CartObject>) session.getAttribute("cart");
 
                 float total = 0;
                 if (cartList != null && cartList.size() > 0) {
-                    for (cartObject cartObj : cartList) {
+                    for (CartObject cartObj : cartList) {
             %>
             <tr>
                 <td class="shopping-item"><%=cartObj.getBook().getBook_Name()%></td>
