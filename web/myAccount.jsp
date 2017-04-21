@@ -16,6 +16,15 @@
             table{
                 font-size:20px;
             }
+            .bold{
+                font-weight:bold;
+                text-align: right;
+                width:20%;
+            }
+            td{
+                width:30%;
+                text-align: center;
+            }
         </style>
         <title>My Account</title>
     </head>
@@ -23,8 +32,8 @@
         <!-- Header -->
         <jsp:include page="header.jsp"/>
 
-        <!-- Main Menu -->
-        <jsp:include page="menu.jsp"/>
+        
+       
         <center>
         <%
             User user = (User) session.getAttribute("userInfo");
@@ -44,25 +53,25 @@
                 }
         %>
         <h1>My Account Information</h1>
-        <table>
+        <table class ="table-striped">
             <tr>
-                <td>Username:</td>
+                <td class="bold">Username:</td>
                 <td><%=user.getUsername()%></td>
             </tr>
             <tr>
-                <td>Email:</td>
+                <td class="bold">Email:</td>
                 <td><%=email%></td>
             </tr>
             <tr>
-                <td>Money:</td>
+                <td class="bold">Money:</td>
                 <td><%=money%></td>
             </tr>
             <tr>
-                <td>Loyal Point:</td>
+                <td class="bold">Loyal Point:</td>
                 <td><%=LP%></td>
             </tr>
             <tr>
-                <td>Role:</td>
+                <td class="bold">Role:</td>
                 <td><%=user.getRole()%></td>
             </tr>
         </table>

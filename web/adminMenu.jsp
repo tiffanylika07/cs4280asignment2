@@ -18,9 +18,6 @@
     <body>
     <!-- Header -->
     <jsp:include page="header.jsp"/>
-    
-    <!-- Main Menu -->
-    <jsp:include page="menu.jsp"/>
    
     <div class="maincontent-area">
     <p style="color: red;">${errorString}</p>

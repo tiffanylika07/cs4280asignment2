@@ -34,8 +34,8 @@
             <!-- Header -->
     <jsp:include page="header.jsp"/>
     
-    <!-- Main Menu -->
-    <jsp:include page="menu.jsp"/>
+    
+   
 
     <div class="maincontent-area">
         <div style="margin-left: auto; margin-right: auto; width:70%;">

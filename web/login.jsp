@@ -14,20 +14,30 @@
     <!-- Header -->
     <jsp:include page="header.jsp"/>
     
-    <!-- Main Menu -->
-    <jsp:include page="menu.jsp"/>
+    
+   
    
     <div class="maincontent-area">
         <div class="loginForm">
             <center>
             <h1>Login</h1>
-            <form action="login.do" method="post">
-                <p>Username: <input name="username" type="text" /></p>
-                <p>password: <input name="password" type="password" /></p>
-                <br>
+            <form class="form-horizontal" action="login.do" method="post">
+                <div class="form-group">
+                    <label for="uName" class="col-sm-5 control-label">Username:</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="uName" name="username" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pw" class="col-sm-5 control-label">Password:</label>
+                    <div class="col-sm-5">
+                      <input type="password" class="form-control" id="pw" name="password" >
+                    </div>
+                </div>
                 <input type="submit" value="Login"/>
-    <!--            <a href="./createUser.jsp">Create Account</a>-->
             </form>
+            
+            
             </center>
         </div>
     </div>

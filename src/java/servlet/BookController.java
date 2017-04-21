@@ -232,6 +232,8 @@ public class BookController extends HttpServlet {
             }
             // Store info in request attribute, before forward to views
             request.setAttribute("bookList", list);
+            request.setAttribute("action", "search");
+            request.setAttribute("keywords", request.getParameter("search"));
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/viewBooksList.jsp");
             dispatcher.forward(request, response);
         } catch (Exception ex) {

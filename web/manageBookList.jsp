@@ -20,8 +20,8 @@
     <!-- Header -->
     <jsp:include page="header.jsp"/>
     
-    <!-- Main Menu -->
-    <jsp:include page="menu.jsp"/>
+    
+   
     <% 
      String msg = (String)request.getAttribute("msg");//means you have to send the message as a parameter
 

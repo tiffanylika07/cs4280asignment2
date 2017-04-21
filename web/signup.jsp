@@ -14,16 +14,33 @@
         <!-- Header -->
         <jsp:include page="header.jsp"/>
     
-        <!-- Main Menu -->
-        <jsp:include page="menu.jsp"/>
+        
+       
         <center>
+            <div class="maincontent-area">
             <h1>Book Store - Create Account</h1>
-            <form action="Signup.do" method="post">
-                <p>Username: <input name="username" type="text" /></p>
-                <p>password: <input name="password" type="password" /></p>
-                <p>Email: <input name="email" type="text" /></p>
+            <form class="form-horizontal" action="Signup.do" method="post" style="width:50%;margin:auto;">
+                <div class="form-group">
+                    <label for="uName" class="col-sm-5 control-label">Username:</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="uName" name="username" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pw" class="col-sm-5 control-label">Password:</label>
+                    <div class="col-sm-5">
+                      <input type="password" class="form-control" id="pw" name="password" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-5 control-label">Email:</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="email" name="email" >
+                    </div>
+                </div>
                 <input type="submit" value="Signup"/>
             </form>
+            </div>
         </center>
         <jsp:include page="footer.jsp"/>
     </body>

@@ -15,8 +15,8 @@
             <!-- Header -->
     <jsp:include page="header.jsp"/>
     
-    <!-- Main Menu -->
-    <jsp:include page="menu.jsp"/>
+    
+   
         <h1>Hello World!</h1>
         <a href="./CategoryController"> abcde</a>
      <!-- Footer -->

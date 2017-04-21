@@ -38,8 +38,8 @@
             <!-- Header -->
     <jsp:include page="header.jsp"/>
     
-    <!-- Main Menu -->
-    <jsp:include page="menu.jsp"/>
+    
+   
    
     <div class="maincontent-area">
     <h2>Edit Book</h2>

@@ -35,12 +35,19 @@
             <!-- Header -->
     <jsp:include page="header.jsp"/>
     
-    <!-- Main Menu -->
-    <jsp:include page="menu.jsp"/>
+    
+   
    
     <div class="maincontent-area">
     <div class="content_container">
-            <div id="body">
+        <% if(request.getAttribute("action") == "search"){
+            out.println("<p class=\"display\">Search Results of: <span class=\"keywords\">"+request.getAttribute("keywords")+"<span></p>");
+        }
+        else if(request.getAttribute("action") == "category"){
+            out.println("<p class=\"display\">Category: <span class=\"keywords\">"+request.getAttribute("categoryName")+"<span></p>");
+        }
+        %>
+    <div id="body">
       <div class="inner">
         <%
            List<Book> list = (List<Book>) request.getAttribute("bookList");
@@ -48,7 +55,7 @@
                 int count = 0;
                 for(Book k :list){
                    
-%>
+        %>
 
 <!--            <div class="f_left" style="width:150px;height:200px;">
                 <div class="hero-tile">

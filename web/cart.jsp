@@ -18,8 +18,6 @@
         <!-- Header -->
         <jsp:include page="header.jsp"/>
 
-        <!-- Main Menu -->
-        <jsp:include page="menu.jsp"/>
     <center>
         <h1>Book Store - Cart</h1>
         <table class="shop_table">
