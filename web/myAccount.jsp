@@ -3,6 +3,7 @@
     Created on : Apr 16, 2017, 8:10:42 PM
     Author     : Kamtso
 --%>
+<%@page import="database.BookDB"%>
 <%@page import="java.sql.*"%>
 <%@page import="javabean.User"%>
 <%@page import="database.ConnectionUtil"%>
@@ -32,9 +33,9 @@
         <!-- Header -->
         <jsp:include page="header.jsp"/>
 
-        
-       
-        <center>
+
+
+    <center>
         <%
             User user = (User) session.getAttribute("userInfo");
             if (user != null) {
@@ -46,10 +47,10 @@
                 String email = null;
                 float money = 0;
                 int LP = 0;
-                if (rs.next()){
+                if (rs.next()) {
                     email = rs.getString("email");
-                    money = rs.getInt("money"); 
-                    LP = rs.getInt("loyalPoint"); 
+                    money = rs.getInt("money");
+                    LP = rs.getInt("loyalPoint");
                 }
         %>
         <h1>My Account Information</h1>
@@ -75,6 +76,56 @@
                 <td><%=user.getRole()%></td>
             </tr>
         </table>
+        <h1>Purchase history</h1>
+        <table class="shop_table">
+            <tr>
+                <th>Date</th>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Refund</th>
+            </tr>
+            <tr>
+            <form action="./CheckOut" method="post">
+                <input type="hidden" name="action" value="refund">
+                <%
+                    preQueryStatement = "SELECT * FROM [SalesLog] WHERE username=? order by Date desc";
+                    pStmnt = connection.prepareStatement(preQueryStatement);
+                    pStmnt.setString(1, user.getUsername());
+                    rs = pStmnt.executeQuery();
+                    Timestamp Date = null;
+                    int BookID = 0;
+                    int quantity = 0;
+                    String refund = null;
+                    while (rs.next()) {
+                        Date = rs.getTimestamp("Date");
+                        BookID = rs.getInt("Book_Id");
+                        quantity = rs.getInt("Quantity");
+                        refund = rs.getString("Refundable");
+                %>
+                <tr>
+                    <td><%=Date%></td>
+                    <td><%=BookDB.getBookName(BookID)%></td>
+                    <td><%=quantity%></td>
+                    <%
+                        if (refund.equals("Y")) {
+                    %>
+                    <td><a class="btn btn-default" href="./index.jsp" role=\"button\">Refund</a></td>
+                    <%
+                    } else {
+                    %>
+                    <td>N/A</td>
+                    <%
+                        }
+                    %>
+                </tr>
+                <%
+                    }
+                %>
+
+            </form>
+            </tr>
+            </form>
+        </table>
         <%
         } else {
         %>
@@ -82,7 +133,7 @@
         <%
             }
         %>
-        </center>
-        <jsp:include page="footer.jsp"/>
-    </body>
+    </center>
+    <jsp:include page="footer.jsp"/>
+</body>
 </html>
