@@ -15,16 +15,20 @@
         <title>Book Store - Cart</title>
         <script>
             function checkForm(form){
-//                alert(form.cashPay.value+"<br>"+form.LPPay.value+"<br>"+form.subTotal.value);
-                if (form.cashPay.value>form.subTotal.value){
+                var cashPay = parseInt(form.cashPay.value);
+                var LPPay = parseInt(form.LPPay.value);
+                var subTotal = parseInt(form.subTotal.value);
+//                alert(cashPay+"<br>"+LPPay+"<br>"+subTotal);
+                if (cashPay>subTotal){
                     alert("PAY BY CASH Out of range!");
                     form.cashPay.focus();
-                } else if (form.LPPay.value>form.subTotal.value){
+                } else if (LPPay>subTotal){
                     alert("PAY BY LP Out of range!");
                     form.LPPay.focus();
                 } else {
                     form.submit();
                 }
+                form.reset();
             }
         </script>
     </head>
