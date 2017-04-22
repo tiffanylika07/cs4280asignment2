@@ -15,7 +15,7 @@
         <title>Book Store - Cart</title>
         <script>
             function checkForm(form){
-                alert(form.cashPay.value+"<br>"+form.LPPay.value+"<br>"+form.subTotal.value);
+//                alert(form.cashPay.value+"<br>"+form.LPPay.value+"<br>"+form.subTotal.value);
                 if (form.cashPay.value>form.subTotal.value){
                     alert("PAY BY CASH Out of range!");
                     form.cashPay.focus();
