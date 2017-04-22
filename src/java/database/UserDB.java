@@ -88,8 +88,8 @@ public class UserDB {
 
         return isSuccess;
     }
-    
-        public static User getUser(String username) {
+
+    public static User getUser(String username) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
 
@@ -113,4 +113,45 @@ public class UserDB {
         }
     }
 
+    public boolean purchase(String username, int money, int LP) {
+        Connection connection = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+
+        try {
+            connection = ConnectionUtil.getConnection();
+            String preQueryStatement = "SELECT money,loyalPoint FROM [USER] WHERE username=?";
+            pStmnt = connection.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, username);
+            ResultSet rs = pStmnt.executeQuery();
+            int moneyDB = 0;
+            int LPDB = 0;
+            if (rs.next()) {
+                moneyDB = rs.getInt("money");
+                LPDB = rs.getInt("loyalPoint");
+            }
+
+            pStmnt = connection.prepareStatement("UPDATE [USER] SET money = ?, loyalPoint = ? WHERE username = ? ");
+            pStmnt.setInt(1, moneyDB - money);
+            pStmnt.setInt(2, LPDB - LP);
+            pStmnt.setString(3, username);
+            int rowCount = pStmnt.executeUpdate();
+            if (rowCount >= 1) {
+                isSuccess = true;
+            }
+            pStmnt.close();
+            connection.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return isSuccess;
+    }
 }

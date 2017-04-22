@@ -95,6 +95,7 @@
             </tr>
             </form>
         </table>
+        <a class="btn btn-default" href="CheckOut" role="button">Check Out</a>
     </center>
     <jsp:include page="footer.jsp"/>
 </body>

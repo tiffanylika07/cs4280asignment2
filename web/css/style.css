@@ -1480,3 +1480,8 @@ img { border: 0; }
     font-weight: bold;
     font-family: 'Marvel', sans-serif;
 }
+
+.recipt-table th,td{
+    padding:10px;
+    border: #999 solid 1px;
+}

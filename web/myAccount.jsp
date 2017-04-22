@@ -48,7 +48,7 @@
                 int LP = 0;
                 if (rs.next()){
                     email = rs.getString("email");
-                    money = rs.getFloat("money"); 
+                    money = rs.getInt("money"); 
                     LP = rs.getInt("loyalPoint"); 
                 }
         %>
