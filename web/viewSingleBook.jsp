@@ -43,7 +43,7 @@
             float: left;
             margin: 1em;
         }
-        #title{
+        #bookTitle{
             font-size: 25px;
         }
         #detail{
@@ -66,7 +66,7 @@
             <img class="singleBkImg" src="image/<%=aBook.getImg_File_Name()%>" style="  display: block;object-fit: cover;"/>
         </div>
         <div id="detail" class="col-sm-7">
-            <div id="title"><%=aBook.getBook_Name()%></div>
+            <div id="bookTitle"><%=aBook.getBook_Name()%></div>
              <p>by <b><%=aBook.getAuthor()%> </b></p>
             <p><b>Published By: </b> <%=aBook.getPress()%> </p>
             <p id="description"><%=aBook.getDescription()%></p>

@@ -61,12 +61,12 @@
                             <p><b>Press</b> <b><%= book.getPress()%></b> </p>
                             <p><b>Price:</b> <b><%= book.getPrice()%></b> </p>
                             <p class="readmore"><a href="./BookController?action=single&bookID=<%=book.getID()%>">READ MORE</a></p>
-                            <div class="clear"></div>
                         </div>
                         <%
                                 }
                             }
                         %>
+                        
                 </div>
             </div>
         </div>

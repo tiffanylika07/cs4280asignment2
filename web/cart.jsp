@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Book Store - Cart</title>
+        <title>Cart - forWORDS</title>
         <script>
             function checkForm(form){
                 var cashPay = parseInt(form.cashPay.value);
