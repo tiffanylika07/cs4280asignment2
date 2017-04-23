@@ -91,7 +91,7 @@ public class CheckOut extends HttpServlet {
                     out.println("<meta http-equiv=\"Refresh\" content=\"3;url=./cart.jsp\">");
                 } else {
                     out.println("<h1>Sales Record</h1>");
-                    out.print("        <table class=\"recipt-table\">"
+                    out.print("        <table class=\"table-striped\">"
                             + "            <tr>\n"
                             + "                <th>Item</th>\n"
                             + "                <th>Quantity</th>\n"
