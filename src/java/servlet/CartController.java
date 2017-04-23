@@ -46,9 +46,13 @@ public class CartController extends HttpServlet {
             if (request.getParameter("action").equals("updateCart")) {
                 updateCart(request, response);
             }
-        } else {
+            else if (request.getParameter("action").equals("buy")) {
+                singlePurchase(request, response);
+            }
+            else {
             addCart(request, response);
-        }
+            }
+        } 
     }
 
     protected void updateCart(HttpServletRequest request, HttpServletResponse response)
@@ -142,6 +146,49 @@ public class CartController extends HttpServlet {
             out.println(ex.getStackTrace());
         }
     }
+    
+    protected void singlePurchase(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        PrintWriter out = response.getWriter();
+        try {
+            cnnct = ConnectionUtil.getConnection();
+            String preQueryStatement = "SELECT * FROM [Book] where ID = ?";
+
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, Integer.parseInt(request.getParameter("bookID")));
+            ResultSet rs = pStmnt.executeQuery();
+            Book aBook = new Book();
+            if (rs.next()) {
+                aBook.setBook_Name(rs.getString("Book_Name"));
+                aBook.setID(rs.getInt("ID"));
+                aBook.setAuthor(rs.getString("Author"));
+                aBook.setPrice(rs.getInt("Price"));
+                aBook.setPress(rs.getString("Press"));
+                aBook.setDescription(rs.getString("Description"));
+                aBook.setLoyalty_Point(rs.getInt("Loyalty_Point"));
+                aBook.setImg_File_Name(rs.getString("Img_File_Name"));
+            }
+            String quantity = request.getParameter("quantity");
+
+            CartObject obj = new CartObject(aBook, Integer.parseInt(quantity));
+            HttpSession session = request.getSession();
+            ArrayList<CartObject> cartList = (ArrayList<CartObject>) session.getAttribute("cart");
+            cartList = new ArrayList<CartObject>();
+            cartList.add(obj);
+
+            session.setAttribute("singlePurchase", cartList);
+            request.setAttribute("action", "single");
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/purchase.jsp");
+            dispatcher.forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
+            out.println(ex.getStackTrace());
+        }
+    }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

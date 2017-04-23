@@ -28,7 +28,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><%=request.getAttribute("categoryName")%> - forWORDS</title>
+        <% if(request.getAttribute("action") == "search"){
+            out.println("<title>Search Books - forWORDS</title>");
+        }
+        else if(request.getAttribute("action") == "category"){
+            out.println("<title>"+request.getAttribute("categoryName")+" - forWORDS</title>");
+        }
+        %>
     </head>
     <body>
             <!-- Header -->

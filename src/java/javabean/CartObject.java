@@ -15,7 +15,15 @@ public class CartObject {
     private int quantity;
     private int cashPay;
     private int LPPay = 0;
+    private String payBy;
 
+    public String getPayBy() {
+        return payBy;
+    }
+
+    public void setPayBy(String payBy) {
+        this.payBy = payBy;
+    }
     public CartObject(Book _book, int _quan) {
         book = _book;
         quantity = _quan;

@@ -94,12 +94,21 @@
                     <select>
                   </div>
                 </div>
+                <input type="hidden" id="act" name="action"/>
             </form>
             <div class="submit col-sm-3">
-                <a class="btn btn-default" href="" role="button">Buy</a>
+                <a class="btn btn-default" href="javascript:{}" 
+                   onclick="
+                    document.getElementById('act').value = 'buy';
+                    document.getElementById('aForm').submit(); return false;" role="button">
+                    Buy
+                </a>
             </div>
             <div class="submit col-sm-4">        
-                <a class="btn btn-default" href="javascript:{}" onclick="document.getElementById('aForm').submit(); return false;" role="button"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                <a class="btn btn-default" href="javascript:{}" onclick="
+                document.getElementById('act').value = '';                
+                document.getElementById('aForm').submit(); return false;"
+                role="button"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
             </div> 
         </div>
     </div>

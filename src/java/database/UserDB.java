@@ -113,7 +113,7 @@ public class UserDB {
         }
     }
 
-    public boolean purchase(String username, int money, int LP) {
+    public boolean purchase(String username, int money, int LP, int LP_Get) {
         Connection connection = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
@@ -132,8 +132,9 @@ public class UserDB {
             }
 
             pStmnt = connection.prepareStatement("UPDATE [USER] SET money = ?, loyalPoint = ? WHERE username = ? ");
-            pStmnt.setInt(1, moneyDB - money);
-            pStmnt.setInt(2, LPDB - LP);
+            //pStmnt.setInt(1, moneyDB - money);
+            pStmnt.setInt(1, moneyDB);
+            pStmnt.setInt(2, LPDB - LP + LP_Get);
             pStmnt.setString(3, username);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
