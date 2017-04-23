@@ -34,4 +34,25 @@ public class BookDB {
             return null;
         }
     }
+
+    public static int getPrice(int bookID) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        try {
+            cnnct = ConnectionUtil.getConnection();
+            String preQueryStatement = "SELECT Price FROM [Book] WHERE ID=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setInt(1, bookID);
+            ResultSet rs = pStmnt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("Price");
+            } else {
+                return 0;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(BookDB.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }
 }

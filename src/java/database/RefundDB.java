@@ -12,87 +12,80 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SalesDB {
+public class RefundDB {
 
-    public boolean addRecord(String username, int BookID, int quantity, boolean refundable) {
+    public static boolean addRecord(int SalesID) {
         Connection connection = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
-        String _refund = "N";
-        
-        try {
-            connection = ConnectionUtil.getConnection();
-            pStmnt = connection.prepareStatement("INSERT INTO [SalesLog] (Date,Username,Book_Id,Quantity,Refundable) VALUES (CURRENT_TIMESTAMP , ? , ? , ? ,?)");
-            pStmnt.setString(1, username);
-            pStmnt.setInt(2, BookID);
-            pStmnt.setInt(3, quantity);
-            if (refundable){
-                _refund = "Y";
-            }
-            pStmnt.setString(4, _refund);
-            int rowCount = pStmnt.executeUpdate();
-            if (rowCount >= 1) {
-                isSuccess = true;
-            }
-            pStmnt.close();
-            connection.close();
-        } catch (SQLException ex) {
-            while (ex != null) {
-                ex.printStackTrace();
-                ex = ex.getNextException();
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SalesDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        return isSuccess;
-    }
-    
-    public static boolean refundStatus(int ID,String status,String originalStatus) {
-        Connection connection = null;
-        PreparedStatement pStmnt = null;
-        boolean isSuccess = false;
-        
         try {
             connection = ConnectionUtil.getConnection();
-            pStmnt = connection.prepareStatement("UPDATE [SalesLog] SET Refundable=? WHERE ID=? and Refundable=?");
-            pStmnt.setString(1, status);
-            pStmnt.setInt(2, ID);
-            pStmnt.setString(3, originalStatus);
-            int rowCount = pStmnt.executeUpdate();
-            if (rowCount >= 1) {
-                isSuccess = true;
-            }
-            pStmnt.close();
-            connection.close();
-        } catch (SQLException ex) {
-            while (ex != null) {
-                ex.printStackTrace();
-                ex = ex.getNextException();
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SalesDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return isSuccess;
-    }
-    
-    public static int getBookID(int SalesID) {
-        Connection connection = null;
-        PreparedStatement pStmnt = null;
-        boolean isSuccess = false;
-        
-        try {
-            connection = ConnectionUtil.getConnection();
-            pStmnt = connection.prepareStatement("SELECT Book_Id FROM [SalesLog] WHERE ID=?");
+            pStmnt = connection.prepareStatement("INSERT INTO [RefundReq] (Date,SalesID,Approve) VALUES (CURRENT_TIMESTAMP , ? , 'N')");
             pStmnt.setInt(1, SalesID);
+            int rowCount = pStmnt.executeUpdate();
+            if (rowCount >= 1) {
+                isSuccess = true;
+            }
+            pStmnt.close();
+            connection.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SalesDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return isSuccess;
+    }
+
+    public static boolean updateStatus(int refundID, String status, String managerName) {
+        Connection connection = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+
+        try {
+            connection = ConnectionUtil.getConnection();
+            pStmnt = connection.prepareStatement("UPDATE [RefundReq] SET Approve = ?, ApproveBy = ? WHERE  ID = ?");
+            pStmnt.setString(1, status);
+            pStmnt.setString(2, managerName);
+            pStmnt.setInt(3, refundID);
+            int rowCount = pStmnt.executeUpdate();
+            if (rowCount >= 1) {
+                isSuccess = true;
+            }
+            pStmnt.close();
+            connection.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SalesDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return isSuccess;
+    }
+    
+        public static int getSalesID(int refundID) {
+        Connection connection = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+
+        try {
+            connection = ConnectionUtil.getConnection();
+            pStmnt = connection.prepareStatement("SELECT SalesID FROM [RefundReq] WHERE  ID = ?");
+            pStmnt.setInt(1, refundID);
             ResultSet rs = pStmnt.executeQuery();
             if (rs.next()) {
-                return rs.getInt("Book_Id");
+                return rs.getInt("SalesID");
             } else {
                 return 0;
             }

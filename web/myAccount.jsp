@@ -1,7 +1,7 @@
 <%-- 
-    Document   : myAccount
-    Created on : Apr 16, 2017, 8:10:42 PM
-    Author     : Kamtso
+   Document   : myAccount
+   Created on : Apr 16, 2017, 8:10:42 PM
+   Author     : Kamtso
 --%>
 <%@page import="database.BookDB"%>
 <%@page import="java.sql.*"%>
@@ -85,8 +85,6 @@
                 <th>Refund</th>
             </tr>
             <tr>
-            <form action="./CheckOut" method="post">
-                <input type="hidden" name="action" value="refund">
                 <%
                     preQueryStatement = "SELECT * FROM [SalesLog] WHERE username=? order by Date desc";
                     pStmnt = connection.prepareStatement(preQueryStatement);
@@ -102,6 +100,9 @@
                         quantity = rs.getInt("Quantity");
                         refund = rs.getString("Refundable");
                 %>
+            <form action="./refundHandler" method="post">
+                <input type="hidden" name="action" value="request">
+                <input type="hidden" name="SalesID" value="<%=rs.getInt("ID")%>">
                 <tr>
                     <td><%=Date%></td>
                     <td><%=BookDB.getBookName(BookID)%></td>
@@ -109,22 +110,32 @@
                     <%
                         if (refund.equals("Y")) {
                     %>
-                    <td><a class="btn btn-default" href="./index.jsp" role=\"button\">Refund</a></td>
+                    <td><input class="btn btn-default" type="submit" value="Refund"/></td>
                     <%
-                    } else {
+                    } else if (refund.equals("N")) {
                     %>
                     <td>N/A</td>
+                    <%
+                    } else if (refund.equals("P")) {
+                    %>
+                    <td>Pending</td>
+                    <%
+                    } else if (refund.equals("A")) {
+                    %>
+                    <td>Accepted</td>
+                    <%
+                    } else if (refund.equals("R")) {
+                    %>
+                    <td>Rejected</td>
                     <%
                         }
                     %>
                 </tr>
-                <%
-                    }
-                %>
-
             </form>
+            <%
+                }
+            %>
             </tr>
-            </form>
         </table>
         <%
         } else {

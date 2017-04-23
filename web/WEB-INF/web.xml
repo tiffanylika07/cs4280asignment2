@@ -28,6 +28,14 @@
         <servlet-name>CheckOut</servlet-name>
         <servlet-class>servlet.CheckOut</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>refundHandler</servlet-name>
+        <servlet-class>servlet.refundHandler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RefundDB</servlet-name>
+        <servlet-class>database.RefundDB</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>books</servlet-name>
         <url-pattern>/books</url-pattern>
@@ -103,6 +111,14 @@
     <servlet-mapping>
         <servlet-name>CheckOut</servlet-name>
         <url-pattern>/CheckOut</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>refundHandler</servlet-name>
+        <url-pattern>/refundHandler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RefundDB</servlet-name>
+        <url-pattern>/RefundDB</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

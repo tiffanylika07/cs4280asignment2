@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import database.BookDB;
 import database.ConnectionUtil;
 import database.UserDB;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +64,9 @@ public class AdminController extends HttpServlet {
             }
             else if (action.equals("addBook")){
                 this.addBook(request, response);
+            }
+            else if (action.equals("approveRefund")){
+                viewRefundRequest(request, response);
             }
         } catch (Exception ex) {
             Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -290,6 +295,64 @@ public class AdminController extends HttpServlet {
             Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);
             out.println(ex);
+        }
+    }
+    
+    protected void viewRefundRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Connection connection = null;
+        PreparedStatement pStmnt = null;
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter();){
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Book Store - CheckOut</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<center>");
+            request.getRequestDispatcher("/header.jsp").include(request, response);
+            out.println("<h1>Refund request</h1>");
+                    out.print("        <table class=\"table-striped\">"
+                            + "            <tr>\n"
+                            + "                <th>Purchase Date</th>\n"
+                            + "                <th>Item</th>\n"
+                            + "                <th>Quantity</th>\n"
+                            + "                <th>Price</th>\n"
+                            + "                <th>Request Date</th>\n"
+                            + "                <th>Approve</th>\n"
+                            + "            </tr>\n");
+            connection = ConnectionUtil.getConnection();
+            String preQueryStatement = "SELECT * FROM [RefundReq] WHERE Approve='N'";
+            pStmnt = connection.prepareStatement(preQueryStatement);
+            ResultSet rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                PreparedStatement pStmnt2 = connection.prepareStatement("SELECT * FROM [SalesLog] WHERE ID=?");
+                pStmnt2.setInt(1, rs.getInt("SalesID"));
+                ResultSet rs2 = pStmnt2.executeQuery();
+                if (rs2.next()) {
+                    out.println("<tr>");
+                    out.println("<td>"+rs2.getTimestamp("Date")+"</td>");
+                    out.println("<td>"+BookDB.getBookName(rs2.getInt("Book_Id"))+"</td>");
+                    out.println("<td>"+rs2.getInt("Quantity")+"</td>");
+                    out.println("<td>"+BookDB.getPrice(rs2.getInt("Book_Id"))*rs2.getInt("Quantity")+"</td>");
+                    out.println("<td>"+rs.getTimestamp("Date")+"</td>");
+                    out.print("<td>");
+                    out.print("<a class=\"btn btn-default\" href=\"./refundHandler?action=accept&id="+rs.getInt("ID")+"\" role=\"button\">Accept</a>&nbsp;");
+                    out.print("<a class=\"btn btn-default\" href=\"./refundHandler?action=reject&id="+rs.getInt("ID")+"\" role=\"button\">Reject</a>");
+                    out.print("</td>\n");
+                }
+            }
+            rs.close();
+            connection.close();
+            out.println("</center>");
+            request.getRequestDispatcher("/footer.jsp").include(request, response);
+            out.println("</body>");
+            out.println("</html>");
+        } catch (SQLException ex) {
+            Logger.getLogger(refundHandler.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(refundHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
