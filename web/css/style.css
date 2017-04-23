@@ -1432,6 +1432,7 @@ img { border: 0; }
 #body .leftbox {
 	float: left;
 	width: 50%;
+        height:35%;
 }
 
 #body .rightbox {
